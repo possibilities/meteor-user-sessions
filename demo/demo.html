@@ -19,7 +19,7 @@
     {{/if}}
     
     <div class="well">
-      {{> createSessionActivator}}
+      {{> signInActivator}}
 
       <div id="currentUserInfo">
         {{#if currentUser}}
@@ -33,6 +33,59 @@
         {{/if}}
       </div>
     </div>
+  </div>
+</template>
+
+<template name="signInActivator">
+    {{#if currentUser}}
+      <h3>Sign out of the demo!</h3>
+      <div>
+        <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
+      </div>
+    {{else}}
+      <h3>Sign into the demo!</h3>
+      <div>
+        <input id="createSessionActivator" type="submit" value="Sign in now!" class="btn btn-primary" />
+      </div>
+    {{/if}}
+    {{> signInForm}}
+</template>
+
+<template name="signInForm">
+  <div id="createSessionForm" class="modal hide fade">
+    <form style="display:inline">
+      <div class="modal-body">
+        <input name="csrfToken" type="hidden" value="TODO">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">×</button>
+          <h3>Sign in</h3>
+        </div>
+        {{> userSessionError}}
+      
+        <div id="userFormElements">
+          {{#if plainTextWarning}}
+            <div  class="alert alert-warning">
+              {{plainTextWarning}}
+            </div>
+          {{/if}}
+          <div id="emailField" class="control-group">
+            <label>Email</label>
+            <input id="userEmail" name="email" type="text" class="span3" placeholder="Your email address…" value="moof@moof.com">
+          </div>
+          <div id="passwordField" class="control-group">
+            <label>Password</label>
+            <input id="userPassword" name="password" type="password" class="span3" placeholder="Your password…" value="moofmoof123">
+            <label class="checkbox">
+              <input id="userRemember" name="remember" type="checkbox" value="1"> Remember me?
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn" data-dismiss="modal">Cancel</a>
+        <input id="signInButton" type="submit" value="Sign in" class="btn btn-primary" />
+      </div>
+    </form>
   </div>
 </template>
 

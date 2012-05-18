@@ -29,7 +29,6 @@ UserSessionHelpers = {
   }
 };
 
-UserSessionHelpers.currentUser = UserSessionHelpers.currentUser;
 Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
 
 // Events
