@@ -1,3 +1,7 @@
+// Demo only accepts 1 signup beyond the users added here
+
+UserSessionConfiguration.signUpLimit = 3;
+
 // Delete everything when the demo starts
 
 Users.remove({});
@@ -20,9 +24,3 @@ if (Users.find({ email: 'moof@moof.com' }).count() === 0)
     passwordDigest: Auth.Encryptor.current.passwordHash('moofmoof123')
   });
 }
-
-Meteor.methods({
-  isPlainText: function() {
-    return Auth.Encryptor.current.name === 'plain';
-  }
-});

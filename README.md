@@ -18,6 +18,8 @@ I'll add instructions eventually. Until then check out demo app in repo.
 
 ## TODO
 
+Forms need to be cleared when submitted successfully
+
 Expose a handle to current user in Meteor methods (same way sessionId works). I mean that's the whole point right!
 
 User model field validation

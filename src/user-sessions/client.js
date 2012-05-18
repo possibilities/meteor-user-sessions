@@ -1,35 +1,40 @@
 // Template methods and helpers
 
 UserSessionHelpers = {
-  getFormData: function() {
-    var form = $('form').get(0);
-    return form2js(form);
-  },
   currentUser: function() {
-    var session = ClientSessions.findOne();
-    if (session) {
-      var user = session.get('user');
-      if (user) {
-        return user.email;        
-      }
+    var session, user;
+    if ((session = ClientSessions.findOne()) && (user = session.get('user'))) {
+      return user.email;        
     }
   },
-  submitSignInForm: function() {
-    Session.set('userSessionError', null);
-    Meteor.call('createUserSession', this.getFormData());
-    $('#createSessionForm').modal('hide').on('hidden', function() {
-      Session.set('userSessionSuccess', "You've successfully signed in!");
-    });
+  formData: function($form) {
+    var form = $form.get(0);
+    return form2js(form);
+  },
+  submitForm: function($form) {
+    this.clearMessages();
+    var formName = $form.data('form-name');
+    console.log(formName);
+    Meteor.call(formName, this.formData($form));
+    $form.closest('.modal').modal('hide');
   },
   submitOnReturn: function(e) {
     if (e.keyCode == 13) {
-      e.preventDefault();
-      UserSessionHelpers.submitSignInForm();
+      var $form = $(e.target).closest('form');
+      if ($form.length === 1) {
+        e.preventDefault();
+        UserSessionHelpers.submitForm($form);
+      }
     }
+  },
+  clearMessages: function() {
+    Session.set('userSessionSuccess', null);
+    Session.set('userSessionError', null);    
   }
 };
 
 Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
+Template.createUserForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
 
 Template.userSessionError.userSessionError = function() {
   return Session.get('userSessionError');
@@ -45,11 +50,12 @@ Template.createSessionForm.plainTextWarning = function() {
 // Events
 
 Template.createSessionActivator.events = {
-  'click #createSessionActivator': function (e) {
-    Session.set('userSessionSuccess', null);
-    Session.set('userSessionError', null);
-    $('#createSessionForm').modal('show').on('shown', function () {
-      $('#userEmail').focus();
+  'click .modalActivator': function (e) {
+    UserSessionHelpers.clearMessages();
+    var $activator = $(e.target);
+    var modalName = $activator.data('modal-name');
+    $('#' + modalName + 'Form.modal').modal('show').on('shown', function () {
+      $(this).find('.focus').focus();
     })
   },
   'click #signOutButton': function (e) {
@@ -58,12 +64,13 @@ Template.createSessionActivator.events = {
   }
 };
 
-Template.createSessionForm.events = {
-  'keydown #userPassword': UserSessionHelpers.submitOnReturn,
-  'keydown #userEmail': UserSessionHelpers.submitOnReturn,
-  'keydown #userRemember': UserSessionHelpers.submitOnReturn,
-  'click #signInButton': function(e) {
+var formEvents = {
+  'keydown form input': UserSessionHelpers.submitOnReturn,
+  'click .modalSubmit': function(e) {
     e.preventDefault();
-    UserSessionHelpers.submitSignInForm();
+    var $form = $(e.target).closest('form');
+    UserSessionHelpers.submitForm($form);
   }
 };
+Template.createSessionForm.events = formEvents;
+Template.createUserForm.events = formEvents;

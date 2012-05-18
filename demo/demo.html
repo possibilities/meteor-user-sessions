@@ -37,23 +37,29 @@
 </template>
 
 <template name="signInActivator">
-    {{#if currentUser}}
-      <h3>Sign out of the demo!</h3>
-      <div>
-        <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
+  {{#if currentUser}}
+    <h3>Sign out of the demo!</h3>
+    <div>
+      <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
+    </div>
+  {{else}}
+    <h3>Sign in or sign up!</h3>
+    <div>
+      <div class="pull-left">
+        <input id="createSessionActivator" type="submit" value="Sign in now!" class="modalActivator btn btn-primary" data-modal-name="createSession" />
       </div>
-    {{else}}
-      <h3>Sign into the demo!</h3>
       <div>
-        <input id="createSessionActivator" type="submit" value="Sign in now!" class="btn btn-primary" />
+        <input id="createUserActivator" type="submit" value="Sign up" class="modalActivator btn btn-primary" data-modal-name="createUser" />
       </div>
-    {{/if}}
-    {{> signInForm}}
+    </div>
+  {{/if}}
+  {{> signInForm}}
+  {{> createUserForm}}
 </template>
 
 <template name="signInForm">
   <div id="createSessionForm" class="modal hide fade">
-    <form style="display:inline">
+    <form style="display:inline" class="sessionForm" data-form-name="createSession">
       <div class="modal-body">
         <input name="csrfToken" type="hidden" value="TODO">
         <div class="modal-header">
@@ -70,20 +76,20 @@
           {{/if}}
           <div id="emailField" class="control-group">
             <label>Email</label>
-            <input id="userEmail" name="email" type="text" class="span3" placeholder="Your email address…" value="moof@moof.com">
+            <input id="sessionEmail" name="email" type="text" class="span3 focus" placeholder="Your email address…" value="moof@moof.com">
           </div>
-          <div id="passwordField" class="control-group">
+          <div id="sessionPasswordField" class="control-group">
             <label>Password</label>
-            <input id="userPassword" name="password" type="password" class="span3" placeholder="Your password…" value="moofmoof123">
+            <input id="sessionPassword" name="password" type="password" class="span3" placeholder="Your password…" value="moofmoof123">
             <label class="checkbox">
-              <input id="userRemember" name="remember" type="checkbox" value="1"> Remember me?
+              <input id="sessionRemember" name="remember" type="checkbox" value="1"> Remember me?
             </label>
           </div>
         </div>
       </div>
       <div class="modal-footer">
         <a class="btn" data-dismiss="modal">Cancel</a>
-        <input id="signInButton" type="submit" value="Sign in" class="btn btn-primary" />
+        <input id="signInButton" type="submit" value="Sign in" class="btn btn-primary modalSubmit" />
       </div>
     </form>
   </div>
