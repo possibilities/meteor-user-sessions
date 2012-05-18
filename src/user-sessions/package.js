@@ -14,7 +14,6 @@ Package.on_use(function (api) {
   api.add_files('vendor/form2js.js', 'client');
   // Resources
   api.add_files('styles.css', 'client');
-  // Resources
   api.add_files('templates.html', 'client');
   // Scripts
   api.add_files('client.js', 'client');  
