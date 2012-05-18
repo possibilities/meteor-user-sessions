@@ -1,16 +1,3 @@
-// Keep user subscription up to date
-
-Meteor.autosubscribe(function() {
-  // var sessionId;
-  // var session = userSession.current();
-  // if (session && (sessionId = session._id)) {
-  //   if (UserSession.userSubscription) {
-  //     UserSession.userSubscription.stop();
-  //   }
-  //   UserSession.userSubscription = Meteor.subscribe('users', { sessionId: sessionId });
-  // }
-});
-
 // Template methods and helpers
 
 UserSessionHelpers = {
