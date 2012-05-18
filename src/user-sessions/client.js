@@ -33,9 +33,6 @@ UserSessionHelpers = {
   }
 };
 
-Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
-Template.createUserForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
-
 Template.userSessionError.userSessionError = function() {
   return Session.get('userSessionError');
 };
@@ -46,6 +43,9 @@ Template.createSessionForm.plainTextWarning = function() {
     return "This server does not have bcrypt installed so passwords are stored in plain text! DON'T STORE ANYTHING IMPORTANT OR USE A SENSITIVE PASSWORD.";
   }
 };
+
+Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
+Template.createUserForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
 
 // Events
 
