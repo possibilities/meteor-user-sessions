@@ -24,13 +24,6 @@ Template.demo.rememberUntil = function() {
 
 Template.demo.currentUser = UserSessionHelpers.currentUser;
 
-// To override a template you have to pull in the supporting methods
-// TODO: Figure out how to not need this
-Template.signInActivator.currentUser = UserSessionHelpers.currentUser;
-Template.signInActivator.events = Template.createSessionActivator.events;
-Template.signInForm.events = Template.createSessionForm.events;
-Template.signInForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
-
 Template.demo.userSessionSuccess = function() {
   return Session.get('userSessionSuccess');
 };

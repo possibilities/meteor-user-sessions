@@ -1,14 +1,16 @@
 <template name="createSessionActivator">
   {{#if currentUser}}
-    <div>
-      <input id="signOutButton" type="submit" value="Sign out" class="btn" />
-    </div>
+    <input id="signOutButton" type="submit" value="Sign out" class="btn" />
   {{else}}
-    <div>
-      <input id="createSessionActivator" type="submit" value="Sign in" class="modalActivator btn" data-modal-name="createSession" />
-    </div>
+    <input id="createSessionActivator" type="submit" value="Sign in" class="modalActivator btn" data-modal-name="createSession" />
   {{/if}}
   {{> createSessionForm}}
+</template>
+
+<template name="createUserActivator">
+  {{#unless currentUser}}
+    <input id="createUserActivator" type="submit" value="Sign up" class="modalActivator btn" data-modal-name="createUser" />
+  {{/unless}}
   {{> createUserForm}}
 </template>
 

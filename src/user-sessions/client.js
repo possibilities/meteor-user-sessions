@@ -14,7 +14,6 @@ UserSessionHelpers = {
   submitForm: function($form) {
     this.clearMessages();
     var formName = $form.data('form-name');
-    console.log(formName);
     Meteor.call(formName, this.formData($form));
     $form.closest('.modal').modal('hide');
   },
@@ -45,26 +44,35 @@ Template.createSessionForm.plainTextWarning = function() {
 };
 
 Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
+Template.createUserActivator.currentUser = UserSessionHelpers.currentUser;
+Template.createSessionForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
 Template.createUserForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
 
 // Events
 
-Template.createSessionActivator.events = {
+var commonSessionActivatorEvents = {
   'click .modalActivator': function (e) {
     UserSessionHelpers.clearMessages();
     var $activator = $(e.target);
     var modalName = $activator.data('modal-name');
     $('#' + modalName + 'Form.modal').modal('show').on('shown', function () {
       $(this).find('.focus').focus();
-    })
-  },
+    });
+  }
+};
+
+Template.createSessionActivator.events = {
   'click #signOutButton': function (e) {
     Meteor.call('forgetClientSession');
     Session.set('userSessionSuccess', "OK, you're logged out!");
   }
 };
+_.extend(Template.createSessionActivator.events, commonSessionActivatorEvents);
 
-var formEvents = {
+Template.createUserActivator.events = {};
+_.extend(Template.createUserActivator.events, commonSessionActivatorEvents);
+
+var commonSessionFormEvents = {
   'keydown form input': UserSessionHelpers.submitOnReturn,
   'click .modalSubmit': function(e) {
     e.preventDefault();
@@ -72,8 +80,8 @@ var formEvents = {
     UserSessionHelpers.submitForm($form);
   }
 };
-Template.createSessionForm.events = formEvents;
-Template.createUserForm.events = formEvents;
+Template.createSessionForm.events = commonSessionFormEvents;
+Template.createUserForm.events = commonSessionFormEvents;
 
 Meteor.call('isPlainText', function(err, isPlainText) {
   Session.set('isPlainText', isPlainText);

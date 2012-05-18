@@ -19,7 +19,8 @@
     {{/if}}
     
     <div class="well">
-      {{> signInActivator}}
+      {{> createSessionActivator}}
+      {{> createUserActivator}}
 
       <div id="currentUserInfo">
         {{#if currentUser}}
@@ -36,28 +37,25 @@
   </div>
 </template>
 
-<template name="signInActivator">
+<template name="createSessionActivator">
   {{#if currentUser}}
-    <h3>Sign out of the demo!</h3>
-    <div>
-      <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
-    </div>
+    <h3>Sign out now!</h3>
+    <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
   {{else}}
-    <h3>Sign in or sign up!</h3>
-    <div>
-      <div class="pull-left">
-        <input id="createSessionActivator" type="submit" value="Sign in now!" class="modalActivator btn btn-primary" data-modal-name="createSession" />
-      </div>
-      <div>
-        <input id="createUserActivator" type="submit" value="Sign up" class="modalActivator btn btn-primary" data-modal-name="createUser" />
-      </div>
-    </div>
+    <h3>Sign in or sign up now!</h3>
+    <input id="createSessionActivator" type="submit" value="Sign in now!" class="modalActivator btn btn-primary" data-modal-name="createSession" />
   {{/if}}
-  {{> signInForm}}
+  {{> createSessionForm}}
+</template>
+
+<template name="createUserActivator">
+  {{#unless currentUser}}
+    <input id="createUserActivator" type="submit" value="Sign up now!" class="modalActivator btn btn-primary" data-modal-name="createUser" />
+  {{/unless}}
   {{> createUserForm}}
 </template>
 
-<template name="signInForm">
+<template name="createSessionForm">
   <div id="createSessionForm" class="modal hide fade">
     <form style="display:inline" class="sessionForm" data-form-name="createSession">
       <div class="modal-body">
@@ -88,8 +86,47 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn" data-dismiss="modal">Cancel</a>
-        <input id="signInButton" type="submit" value="Sign in" class="btn btn-primary modalSubmit" />
+        <a class="btn btn-primary" data-dismiss="modal">Cancel!</a>
+        <input id="signInButton" type="submit" value="Sign in!" class="btn btn-primary modalSubmit" />
+      </div>
+    </form>
+  </div>
+</template>
+
+<template name="createUserForm">
+  <div id="createUserForm" class="modal hide fade">
+    <form style="display:inline" class="sessionForm" data-form-name="createUser">
+      <div class="modal-body">
+        <input name="csrfToken" type="hidden" value="TODO">
+        <div class="modal-header">
+          <button class="close" data-dismiss="modal">×</button>
+          <h3>Sign up</h3>
+        </div>
+        {{> userSessionError}}
+      
+        <div id="userFormElements">
+          {{#if plainTextWarning}}
+            <div  class="alert alert-warning">
+              {{plainTextWarning}}
+            </div>
+          {{/if}}
+          <div id="emailField" class="control-group">
+            <label>Email</label>
+            <input id="userEmail" name="email" type="text" class="span3 focus" placeholder="Your email address…">
+          </div>
+          <div id="passwordField" class="control-group">
+            <label>Password</label>
+            <input id="userPassword" name="password" type="password" class="span3" placeholder="Your password…">
+          </div>
+          <div id="passwordConfirmationField" class="control-group">
+            <label>Confirm password</label>
+            <input id="userPasswordConfirmation" name="passwordConfirmation" type="password" class="span3" placeholder="Password confirmation…">
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-dismiss="modal">Cancel!</a>
+        <input id="signUpButton" type="submit" value="Sign up!" class="modalSubmit btn btn-primary" />
       </div>
     </form>
   </div>
