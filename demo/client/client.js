@@ -51,12 +51,12 @@ Meteor.startup(function() {
 
 DemoHelpers = {
   successFadeOutAfter: function(afterSeconds) {
-    // if (this.timeoutId) Meteor.clearTimeout(this.timeoutId);
-    // this.timeoutId = Meteor.setTimeout(function() {
-    //   $('#successMessage').fadeOut('fast', function() {
-    //     if (!this.timeoutId) Session.set('successMessage');
-    //   });
-    // }, afterSeconds);
+    if (this.timeoutId) Meteor.clearTimeout(this.timeoutId);
+    this.timeoutId = Meteor.setTimeout(function() {
+      $('#successMessage').fadeOut('fast', function() {
+        if (!this.timeoutId) Session.set('successMessage');
+      });
+    }, afterSeconds);
   }
 }
 
@@ -64,11 +64,11 @@ DemoHelpers = {
 
 Meteor.autosubscribe(function() {
   // Deal with fading out success message some time after it's displayed
-  // var message = Session.get('successMessage');
-  // if (message) {
-  //   $('#setUserNameInput').focus();
-  //   DemoHelpers.successFadeOutAfter(7000);
-  // } 
+  var message = Session.get('successMessage');
+  if (message) {
+    $('#setUserNameInput').focus();
+    DemoHelpers.successFadeOutAfter(7000);
+  }
 });
 
 Meteor.autosubscribe(function() {
