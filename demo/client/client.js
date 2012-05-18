@@ -68,7 +68,7 @@ Meteor.autosubscribe(function() {
   if (message) {
     $('#setUserNameInput').focus();
     DemoHelpers.successFadeOutAfter(7000);
-  }
+  } 
 });
 
 Meteor.autosubscribe(function() {

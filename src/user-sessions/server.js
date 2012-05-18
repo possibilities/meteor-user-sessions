@@ -9,7 +9,7 @@ Meteor.methods({
         delete userForSession.passwordDigest;
         session.set('user', user);
         if (params.remember === '1') {
-          Meteor.call('rememberClientSession');
+          Meteor.call('rememberClientSession', this.sessionId);
         }
       }
     }
