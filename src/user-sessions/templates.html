@@ -2,16 +2,12 @@
     {{#if currentUser}}
       <h3>Sign out of the demo!</h3>
       <div>
-        <div>
-          <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
-        </div>
+        <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
       </div>
     {{else}}
       <h3>Sign into the demo!</h3>
       <div>
-        <div>
-          <input id="signInModalActivator" type="submit" value="Sign in now!" class="btn btn-primary" />
-        </div>
+        <input id="signInModalActivator" type="submit" value="Sign in now!" class="btn btn-primary" />
       </div>
     {{/if}}
     {{> modalSignInForm}}
@@ -26,7 +22,7 @@
           <button class="close" data-dismiss="modal">×</button>
           <h3>Sign in</h3>
         </div>
-        {{> errorMessage}}
+        {{> userSessionError}}
       
         <div id="userFormElements">
           {{#if plainTextWarning}}
@@ -55,10 +51,10 @@
   </div>
 </template>
 
-<template name="errorMessage">
-  {{#if errorMessage}}
-    {{#with errorMessage}}
-      <div id="errorMessage" class="alert alert-error">
+<template name="userSessionError">
+  {{#if userSessionError}}
+    {{#with userSessionError}}
+      <div id="userSessionError" class="alert alert-error">
           <strong>{{reason}}</strong>
           {{#if details}}
             <div id="errorDetails">
@@ -72,10 +68,10 @@
   {{/if}}
 </template>
 
-<template name="successMessage">
-  {{#if successMessage}}
-    <div id="successMessage" class="alert alert-success">
-      {{successMessage}}
+<template name="userSessionSuccess">
+  {{#if userSessionSuccess}}
+    <div id="userSessionSuccess" class="alert alert-success">
+      {{userSessionSuccess}}
     </div>
   {{/if}}
 </template>

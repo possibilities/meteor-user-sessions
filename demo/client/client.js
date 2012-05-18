@@ -24,12 +24,12 @@ Template.demo.rememberUntil = function() {
 
 Template.demo.currentUser = UserSessionHelpers.currentUser;
 
-Template.demo.successMessage = function() {
-  return Session.get('successMessage');
+Template.demo.userSessionSuccess = function() {
+  return Session.get('userSessionSuccess');
 };
 
-Template.errorMessage.errorMessage = function() {
-  return Session.get('errorMessage');
+Template.userSessionError.userSessionError = function() {
+  return Session.get('userSessionError');
 };
 
 Template.modalSignInForm.plainTextWarning = function() {
@@ -45,8 +45,8 @@ DemoHelpers = {
   successFadeOutAfter: function(afterSeconds) {
     if (this.timeoutId) Meteor.clearTimeout(this.timeoutId);
     this.timeoutId = Meteor.setTimeout(function() {
-      $('#successMessage').fadeOut('fast', function() {
-        if (!this.timeoutId) Session.set('successMessage');
+      $('#userSessionSuccess').fadeOut('fast', function() {
+        if (!this.timeoutId) Session.set('userSessionSuccess');
       });
     }, afterSeconds);
   }
@@ -56,7 +56,7 @@ DemoHelpers = {
 
 Meteor.autosubscribe(function() {
   // Deal with fading out success message some time after it's displayed
-  var message = Session.get('successMessage');
+  var message = Session.get('userSessionSuccess');
   if (message) {
     $('#setUserNameInput').focus();
     DemoHelpers.successFadeOutAfter(7000);

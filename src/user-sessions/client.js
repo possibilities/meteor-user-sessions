@@ -15,10 +15,10 @@ UserSessionHelpers = {
     }
   },
   submitSignInForm: function() {
-    Session.set('errorMessage', null);
+    Session.set('userSessionError', null);
     Meteor.call('createUserSession', this.getFormData());
     $('#modalSignInForm').modal('hide').on('hidden', function() {
-      Session.set('successMessage', "You've successfully signed in!");
+      Session.set('userSessionSuccess', "You've successfully signed in!");
     });
   },
   submitOnReturn: function(e) {
@@ -36,15 +36,15 @@ Template.signInModalActivator.currentUser = UserSessionHelpers.currentUser;
 
 Template.signInModalActivator.events = {
   'click #signInModalActivator': function (e) {
-    Session.set('successMessage', null);
-    Session.set('errorMessage', null);
+    Session.set('userSessionSuccess', null);
+    Session.set('userSessionError', null);
     $('#modalSignInForm').modal('show').on('shown', function () {
       $('#userEmail').focus();
     })
   },
   'click #signOutButton': function (e) {
     Meteor.call('forgetClientSession');
-    Session.set('successMessage', "OK, you're logged out!");
+    Session.set('userSessionSuccess', "OK, you're logged out!");
   }
 };
 
