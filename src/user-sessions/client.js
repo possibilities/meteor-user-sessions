@@ -17,7 +17,7 @@ UserSessionHelpers = {
   submitSignInForm: function() {
     Session.set('userSessionError', null);
     Meteor.call('createUserSession', this.getFormData());
-    $('#modalSignInForm').modal('hide').on('hidden', function() {
+    $('#createSessionForm').modal('hide').on('hidden', function() {
       Session.set('userSessionSuccess', "You've successfully signed in!");
     });
   },
@@ -30,15 +30,15 @@ UserSessionHelpers = {
 };
 
 UserSessionHelpers.currentUser = UserSessionHelpers.currentUser;
-Template.signInModalActivator.currentUser = UserSessionHelpers.currentUser;
+Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
 
 // Events
 
-Template.signInModalActivator.events = {
-  'click #signInModalActivator': function (e) {
+Template.createSessionActivator.events = {
+  'click #createSessionActivator': function (e) {
     Session.set('userSessionSuccess', null);
     Session.set('userSessionError', null);
-    $('#modalSignInForm').modal('show').on('shown', function () {
+    $('#createSessionForm').modal('show').on('shown', function () {
       $('#userEmail').focus();
     })
   },
@@ -48,7 +48,7 @@ Template.signInModalActivator.events = {
   }
 };
 
-Template.modalSignInForm.events = {
+Template.createSessionForm.events = {
   'keydown #userPassword': UserSessionHelpers.submitOnReturn,
   'keydown #userEmail': UserSessionHelpers.submitOnReturn,
   'keydown #userRemember': UserSessionHelpers.submitOnReturn,

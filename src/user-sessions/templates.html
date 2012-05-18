@@ -1,4 +1,4 @@
-<template name="signInModalActivator">
+<template name="createSessionActivator">
     {{#if currentUser}}
       <h3>Sign out of the demo!</h3>
       <div>
@@ -7,14 +7,14 @@
     {{else}}
       <h3>Sign into the demo!</h3>
       <div>
-        <input id="signInModalActivator" type="submit" value="Sign in now!" class="btn btn-primary" />
+        <input id="createSessionActivator" type="submit" value="Sign in now!" class="btn btn-primary" />
       </div>
     {{/if}}
-    {{> modalSignInForm}}
+    {{> createSessionForm}}
 </template>
 
-<template name="modalSignInForm">
-  <div id="modalSignInForm" class="modal hide fade">
+<template name="createSessionForm">
+  <div id="createSessionForm" class="modal hide fade">
     <form style="display:inline">
       <div class="modal-body">
         <input name="csrfToken" type="hidden" value="TODO">
