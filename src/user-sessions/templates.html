@@ -1,13 +1,11 @@
 <template name="createSessionActivator">
     {{#if currentUser}}
-      <h3>Sign out of the demo!</h3>
       <div>
-        <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
+        <input id="signOutButton" type="submit" value="Sign out" class="btn" />
       </div>
     {{else}}
-      <h3>Sign into the demo!</h3>
       <div>
-        <input id="createSessionActivator" type="submit" value="Sign in now!" class="btn btn-primary" />
+        <input id="createSessionActivator" type="submit" value="Sign in" class="btn" />
       </div>
     {{/if}}
     {{> createSessionForm}}
@@ -45,7 +43,7 @@
       </div>
       <div class="modal-footer">
         <a class="btn" data-dismiss="modal">Cancel</a>
-        <input id="signInButton" type="submit" value="Sign in" class="btn btn-primary" />
+        <input id="signInButton" type="submit" value="Sign in" class="btn" />
       </div>
     </form>
   </div>
