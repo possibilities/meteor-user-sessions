@@ -39,14 +39,6 @@ Template.modalSignInForm.plainTextWarning = function() {
   }
 };
 
-// On startup
-
-Meteor.startup(function() {
-  // $(function() {
-  //   $('#signInModalActivator').focus();
-  // });
-});
-
 // Animations
 
 DemoHelpers = {
