@@ -35,17 +35,6 @@ Template.demo.userSessionSuccess = function() {
   return Session.get('userSessionSuccess');
 };
 
-Template.userSessionError.userSessionError = function() {
-  return Session.get('userSessionError');
-};
-
-Template.createSessionForm.plainTextWarning = function() {
-  var isPlainText = Session.get('isPlainText');
-  if (isPlainText) {
-    return "This server does not have bcrypt installed so passwords are stored in plain text! DON'T STORE ANYTHING IMPORTANT OR USE A SENSITIVE PASSWORD.";
-  }
-};
-
 // Animations
 
 DemoHelpers = {
@@ -79,10 +68,6 @@ Meteor.autosubscribe(function() {
       $('#createSessionActivator').focus();
     }
   });
-});
-
-Meteor.call('isPlainText', function(err, isPlainText) {
-  Session.set('isPlainText', isPlainText);
 });
 
 // Get github fork me graphic loaded. Found that client subscriptions sometimes

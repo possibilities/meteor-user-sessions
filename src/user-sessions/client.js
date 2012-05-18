@@ -31,6 +31,17 @@ UserSessionHelpers = {
 
 Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
 
+Template.userSessionError.userSessionError = function() {
+  return Session.get('userSessionError');
+};
+
+Template.createSessionForm.plainTextWarning = function() {
+  var isPlainText = Session.get('isPlainText');
+  if (isPlainText) {
+    return "This server does not have bcrypt installed so passwords are stored in plain text! DON'T STORE ANYTHING IMPORTANT OR USE A SENSITIVE PASSWORD.";
+  }
+};
+
 // Events
 
 Template.createSessionActivator.events = {

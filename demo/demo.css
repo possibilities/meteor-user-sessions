@@ -10,12 +10,3 @@ h1, h2, h3, h4 {
 .clearfix {
   clear: both;
 }
-
-#currentUserInfo {
-  margin-top: 30px;
-}
-
-#userFormElements {
-  margin-top: 20px;
-  margin-left: 10px;
-}

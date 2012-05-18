@@ -15,3 +15,7 @@ Meteor.methods({
     }
   }
 });
+
+Meteor.call('isPlainText', function(err, isPlainText) {
+  Session.set('isPlainText', isPlainText);
+});
