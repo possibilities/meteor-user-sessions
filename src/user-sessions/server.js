@@ -21,21 +21,26 @@ Meteor.methods({
     }
   },
   createUser: function(params) {
-    if (UserSessionConfiguration.signUpLimit && (Users.find().count() < UserSessionConfiguration.signUpLimit)) {
-      if (params.password === params.passwordConfirmation) {
-        var password = params.password;
-        var passwordDigest = Auth.Encryptor.current.passwordHash(params.password);
-        var userId = Users.insert({
-          email: params.email,
-          passwordDigest: passwordDigest
-        });
-        var session = ClientSessions.findOne(this.sessionId);
-        if (session) {
-          var user = Users.findOne(userId);
-          addUserToSession(user, session);
-          if (params.remember === '1') {
-            Meteor.call('rememberClientSession', this.sessionId);
-          }
+    // TODO real validation
+    if (UserSessionConfiguration.signUpLimit && (Users.find().count() >= UserSessionConfiguration.signUpLimit)) {
+      return;
+    }
+    if (Users.find({ email: params.email }).count() > 0) {
+      return;
+    }
+    if (params.password === params.passwordConfirmation) {
+      var password = params.password;
+      var passwordDigest = Auth.Encryptor.current.passwordHash(params.password);
+      var userId = Users.insert({
+        email: params.email,
+        passwordDigest: passwordDigest
+      });
+      var session = ClientSessions.findOne(this.sessionId);
+      if (session) {
+        var user = Users.findOne(userId);
+        addUserToSession(user, session);
+        if (params.remember === '1') {
+          Meteor.call('rememberClientSession', this.sessionId);
         }
       }
     }
