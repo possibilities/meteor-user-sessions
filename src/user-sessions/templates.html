@@ -25,7 +25,7 @@
         </div>
         {{> userSessionError}}
       
-        <div id="userFormElements">
+        <div class="userFormElements">
           {{#if plainTextWarning}}
             <div  class="alert alert-warning">
               {{plainTextWarning}}
@@ -33,11 +33,11 @@
           {{/if}}
           <div id="emailField" class="control-group">
             <label>Email</label>
-            <input id="sessionEmail" name="email" type="text" class="span3 focus" placeholder="Your email address…">
+            <input id="sessionEmail" name="email" type="text" class="span3 entry focus" placeholder="Your email address…">
           </div>
           <div id="sessionPasswordField" class="control-group">
             <label>Password</label>
-            <input id="sessionPassword" name="password" type="password" class="span3" placeholder="Your password…">
+            <input id="sessionPassword" name="password" type="password" class="span3 entry" placeholder="Your password…">
             <label class="checkbox">
               <input id="sessionRemember" name="remember" type="checkbox" value="1"> Remember me?
             </label>
@@ -63,7 +63,7 @@
         </div>
         {{> userSessionError}}
       
-        <div id="userFormElements">
+        <div class="userFormElements">
           {{#if plainTextWarning}}
             <div  class="alert alert-warning">
               {{plainTextWarning}}
@@ -71,15 +71,15 @@
           {{/if}}
           <div id="emailField" class="control-group">
             <label>Email</label>
-            <input id="userEmail" name="email" type="text" class="span3 focus" placeholder="Your email address…">
+            <input id="userEmail" name="email" type="text" class="span3 entry focus" placeholder="Your email address…">
           </div>
           <div id="passwordField" class="control-group">
             <label>Password</label>
-            <input id="userPassword" name="password" type="password" class="span3" placeholder="Your password…">
+            <input id="userPassword" name="password" type="password" class="span3 entry" placeholder="Your password…">
           </div>
           <div id="passwordConfirmationField" class="control-group">
             <label>Confirm password</label>
-            <input id="userPasswordConfirmation" name="passwordConfirmation" type="password" class="span3" placeholder="Confirm your password…">
+            <input id="userPasswordConfirmation" name="passwordConfirmation" type="password" class="span3 entry" placeholder="Confirm your password…">
           </div>
         </div>
       </div>
