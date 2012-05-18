@@ -1,6 +1,6 @@
 # User Sessions for Meteor
 
-Attach users to [client-sessions](http://client-sessions.meteor.com)
+A Meteor lib for tracking users across requests (based on [client-sessions](http://client-sessions.meteor.com))
 
 [Check out the demo!](http://user-sessions.meteor.com/)
 
