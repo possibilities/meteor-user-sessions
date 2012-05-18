@@ -44,7 +44,3 @@ Meteor.methods({
     return Auth.Encryptor.current.name === 'plain';
   }
 });
-
-Meteor.call('isPlainText', function(err, isPlainText) {
-  Session.set('isPlainText', isPlainText);
-});

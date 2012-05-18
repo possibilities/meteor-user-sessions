@@ -74,3 +74,7 @@ var formEvents = {
 };
 Template.createSessionForm.events = formEvents;
 Template.createUserForm.events = formEvents;
+
+Meteor.call('isPlainText', function(err, isPlainText) {
+  Session.set('isPlainText', isPlainText);
+});
