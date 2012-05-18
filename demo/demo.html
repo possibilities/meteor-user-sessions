@@ -1,0 +1,41 @@
+<head>
+  <title>User Sessions Demo</title>
+</head>
+
+<body>
+  {{> demo}}
+  {{> forkMe}}
+</body>
+
+<template name="demo">
+
+  <h1>User Sessions Demo</h1>
+
+  <p><em>Attach users to <a href="http://client-sessions.meteor.com">client-sessions</a></em></p>
+
+  <div>
+    {{#if successMessage}}
+      <div id="successMessage" class="alert alert-success">{{successMessage}}</div>
+    {{/if}}
+    
+    <div class="well">
+      {{> signInModalActivator}}
+
+      <div id="currentUserInfo">
+        {{#if currentUser}}
+          <p><em>Signed in as</em> <strong>{{currentUser}}</strong></p>
+          {{#if sessionId}}
+            <p><em>Your session ID is</em> <strong>{{sessionId}}</strong></p>
+          {{/if}}
+          <p>Your session expires <strong>{{#if rememberUntil}}{{rememberUntil}}{{else}}when you close this browser window{{/if}}</strong>.</p>
+        {{else}}
+          <p><em>You're not signed in right now!</em></p>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="forkMe">
+  <a href="https://github.com/possibilities/meteor-user-sessions"><img class="forkMe" style="position: absolute; top: 0; right: 0; border: 0;" data-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
+</template>
