@@ -43,21 +43,21 @@
     <input id="signOutButton" type="submit" value="Sign out now!" class="btn btn-primary" />
   {{else}}
     <h3>Sign in or sign up now!</h3>
-    <input id="createSessionActivator" type="submit" value="Sign in now!" class="modalActivator btn btn-primary" data-modal-name="createSession" />
+    <input id="createSessionActivator" type="submit" value="Sign in now!" class="modalActivator btn btn-primary" data-modal-name="createSessionForm" />
   {{/if}}
   {{> createSessionForm}}
 </template>
 
 <template name="createUserActivator">
   {{#unless currentUser}}
-    <input id="createUserActivator" type="submit" value="Sign up now!" class="modalActivator btn btn-primary" data-modal-name="createUser" />
+    <input id="createUserActivator" type="submit" value="Sign up now!" class="modalActivator btn btn-primary" data-modal-name="createUserForm" />
   {{/unless}}
   {{> createUserForm}}
 </template>
 
 <template name="createSessionForm">
   <div id="createSessionForm" class="modal hide fade">
-    <form style="display:inline" class="sessionForm" data-form-name="createSession">
+    <form style="display:inline" class="sessionForm" data-method-name="createSession">
       <div class="modal-body">
         <input name="csrfToken" type="hidden" value="TODO">
         <div class="modal-header">
@@ -95,7 +95,7 @@
 
 <template name="createUserForm">
   <div id="createUserForm" class="modal hide fade">
-    <form style="display:inline" class="sessionForm" data-form-name="createUser">
+    <form style="display:inline" class="sessionForm" data-method-name="createUser">
       <div class="modal-body">
         <input name="csrfToken" type="hidden" value="TODO">
         <div class="modal-header">
