@@ -1,54 +1,40 @@
 // Template methods and helpers
 
-UserSessionHelpers = {
-  currentUser: function() {
-    var session, user;
-    if ((session = ClientSessions.findOne()) && (user = session.get('user'))) {
-      return user.email;        
-    }
-  },
-  formData: function($form) {
-    var form = $form.get(0);
-    return form2js(form);
-  },
-  submitForm: function($form) {
-    this.clearMessages();
-    var formName = $form.data('method-name');
-    Meteor.call(formName, this.formData($form));
-    $form.closest('.modal').modal('hide');
-  },
-  submitOnReturn: function(e) {
-    if (e.keyCode == 13) {
-      var $form = $(e.target).closest('form');
-      if ($form.length === 1) {
-        e.preventDefault();
-        UserSessionHelpers.submitForm($form);
-      }
-    }
-  },
-  clearMessages: function() {
-    Session.set('userSessionSuccess', null);
-    Session.set('userSessionError', null);    
+UserSessionHelpers = {};
+
+UserSessionHelpers.currentUser = function() {
+  var session, user;
+  if ((session = ClientSessions.findOne()) && (user = session.get('user'))) {
+    return user.email;        
   }
 };
 
-Template.userSessionError.userSessionError = function() {
-  return Session.get('userSessionError');
+UserSessionHelpers.formData = function($form) {
+  var form = $form.get(0);
+  return form2js(form);
 };
 
-Template.createSessionForm.plainTextWarning = function() {
-  var isPlainText = Session.get('isPlainText');
-  if (isPlainText) {
-    return "This server does not have bcrypt installed so passwords are stored in plain text! DON'T STORE ANYTHING IMPORTANT OR USE A SENSITIVE PASSWORD.";
+UserSessionHelpers.submitForm = function($form) {
+  this.clearMessages();
+  var formName = $form.data('method-name');
+  Meteor.call(formName, this.formData($form));
+  $form.closest('.modal').modal('hide');
+};
+
+UserSessionHelpers.submitOnReturn = function(e) {
+  if (e.keyCode == 13) {
+    var $form = $(e.target).closest('form');
+    if ($form.length === 1) {
+      e.preventDefault();
+      UserSessionHelpers.submitForm($form);
+    }
   }
 };
 
-Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
-Template.createUserActivator.currentUser = UserSessionHelpers.currentUser;
-Template.createSessionForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
-Template.createUserForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
-
-// Events
+UserSessionHelpers.clearMessages = function() {
+  Session.set('userSessionSuccess', null);
+  Session.set('userSessionError', null);    
+};
 
 UserSessionHelpers.commonActivatorEvents = {
   'click .modalActivator': function (e) {
@@ -69,6 +55,24 @@ UserSessionHelpers.commonFormEvents = {
     UserSessionHelpers.submitForm($form);
   }
 };
+
+Template.userSessionError.userSessionError = function() {
+  return Session.get('userSessionError');
+};
+
+Template.createSessionForm.plainTextWarning = function() {
+  var isPlainText = Session.get('isPlainText');
+  if (isPlainText) {
+    return "This server does not have bcrypt installed so passwords are stored in plain text! DON'T STORE ANYTHING IMPORTANT OR USE A SENSITIVE PASSWORD.";
+  }
+};
+
+Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
+Template.createUserActivator.currentUser = UserSessionHelpers.currentUser;
+Template.createSessionForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
+Template.createUserForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
+
+// Events
 
 Template.createSessionActivator.events = {
   'click #signOutButton': function (e) {
