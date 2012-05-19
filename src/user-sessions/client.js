@@ -12,16 +12,13 @@ UserSessionHelpers = {
     return form2js(form);
   },
   submitForm: function($form) {
-    console.log('submitForm');
     this.clearMessages();
     var formName = $form.data('method-name');
-    console.log('formName', formName, this.formData($form));
     Meteor.call(formName, this.formData($form));
     $form.closest('.modal').modal('hide');
   },
   submitOnReturn: function(e) {
     if (e.keyCode == 13) {
-      console.log('modalSubmit keypress');
       var $form = $(e.target).closest('form');
       if ($form.length === 1) {
         e.preventDefault();
@@ -67,7 +64,6 @@ UserSessionHelpers.commonActivatorEvents = {
 UserSessionHelpers.commonFormEvents = {
   'keydown form input': UserSessionHelpers.submitOnReturn,
   'click .modalSubmit': function(e) {
-    console.log('modalSubmit');
     e.preventDefault();
     var $form = $(e.target).closest('form');
     UserSessionHelpers.submitForm($form);

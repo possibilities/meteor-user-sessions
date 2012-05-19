@@ -8,7 +8,6 @@ var addUserToSession = function(user, session) {
 
 Meteor.methods({
   createSession: function(params) {
-    console.log('createSession', 1);
     var user = Auth.Encryptor.current.authenticateUser(params.email, params.password);
     if (user) {
       // Don't send private stuff back to client
@@ -22,7 +21,6 @@ Meteor.methods({
     }
   },
   createUser: function(params) {
-    console.log('createUser', 1);
     // TODO real validation
     if (UserSessionConfiguration.signUpLimit && (Users.find().count() >= UserSessionConfiguration.signUpLimit)) {
       return;
