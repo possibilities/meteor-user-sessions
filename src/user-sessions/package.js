@@ -13,7 +13,6 @@ Package.on_use(function (api) {
   api.use('ui-helpers', 'client');
 
   // Resources
-  api.add_files('styles.css', 'client');
   api.add_files('templates.html', 'client');
   // Scripts
   api.add_files('client.js', 'client');  

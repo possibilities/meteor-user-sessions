@@ -3,14 +3,10 @@ body {
   width: 700px;
 }
 
-h1, h2, h3, h4 {
-  padding-bottom: 10px;
-}
-
-.clearfix {
-  clear: both;
-}
-
 #createUserActivator {
   margin-left: 5px;
+}
+
+#currentUserInfo {
+  margin-top: 30px;
 }
