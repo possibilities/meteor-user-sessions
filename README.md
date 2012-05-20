@@ -18,6 +18,8 @@ I'll add instructions eventually. Until then check out demo app in repo.
 
 ## TODO
 
+When you tab out of blog settings fields the focus is moving to buttons under the overlay
+
 Forms need to be cleared when submitted successfully
 
 Expose a handle to current user in Meteor methods (same way sessionId works). I mean that's the whole point right!
