@@ -12,8 +12,6 @@ Package.on_use(function (api) {
   api.use('template-override', 'client');
   api.use('ui-helpers', 'client');
 
-  // Vendored
-  api.add_files('vendor/form2js.js', 'client');
   // Resources
   api.add_files('styles.css', 'client');
   api.add_files('templates.html', 'client');
