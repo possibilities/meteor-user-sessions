@@ -10,6 +10,7 @@ Package.on_use(function (api) {
   api.use('simple-secure', 'server');
   api.use('encryptors', 'server');
   api.use('template-override', 'client');
+  api.use('ui-helpers', 'client');
 
   // Vendored
   api.add_files('vendor/form2js.js', 'client');

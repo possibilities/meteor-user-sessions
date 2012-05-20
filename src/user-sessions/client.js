@@ -9,55 +9,8 @@ UserSessionHelpers.currentUser = function() {
   }
 };
 
-UserSessionHelpers.formData = function($form) {
-  var form = $form.get(0);
-  return form2js(form);
-};
-
-UserSessionHelpers.submitForm = function($form) {
-  this.clearMessages();
-  var formName = $form.data('method-name');
-  Meteor.call(formName, this.formData($form));
-  $form.closest('.modal').modal('hide');
-};
-
-UserSessionHelpers.submitOnReturn = function(e) {
-  if (e.keyCode == 13) {
-    var $form = $(e.target).closest('form');
-    if ($form.length === 1) {
-      e.preventDefault();
-      UserSessionHelpers.submitForm($form);
-    }
-  }
-};
-
-UserSessionHelpers.clearMessages = function() {
-  Session.set('userSessionSuccess', null);
-  Session.set('userSessionError', null);    
-};
-
-UserSessionHelpers.commonActivatorEvents = {
-  'click .modalActivator': function (e) {
-    UserSessionHelpers.clearMessages();
-    var $activator = $(e.target);
-    var modalName = $activator.data('modal-name');
-    $('#' + modalName + '.modal').modal('show').on('shown', function () {
-      $(this).find('.focus').focus();
-    });
-  }
-};
-
-UserSessionHelpers.commonFormEvents = {
-  'keydown form input': UserSessionHelpers.submitOnReturn,
-  'click .modalSubmit': function(e) {
-    e.preventDefault();
-    var $form = $(e.target).closest('form');
-    UserSessionHelpers.submitForm($form);
-  }
-};
-
-Template.userSessionError.userSessionError = function() {
-  return Session.get('userSessionError');
+Template.successMessage.successMessage = function() {
+  return Session.get('successMessage');
 };
 
 Template.createSessionForm.plainTextWarning = function() {
@@ -77,16 +30,16 @@ Template.createUserForm.plainTextWarning = Template.createSessionForm.plainTextW
 Template.createSessionActivator.events = {
   'click #signOutButton': function (e) {
     Meteor.call('forgetClientSession');
-    Session.set('userSessionSuccess', "OK, you're logged out!");
+    Session.set('successMessage', "OK, you're logged out!");
   }
 };
-_.extend(Template.createSessionActivator.events, UserSessionHelpers.commonActivatorEvents);
+_.extend(Template.createSessionActivator.events, UIHelpers.activatorEvents);
 
 Template.createUserActivator.events = {};
-_.extend(Template.createUserActivator.events, UserSessionHelpers.commonActivatorEvents);
+_.extend(Template.createUserActivator.events, UIHelpers.activatorEvents);
 
-Template.createSessionForm.events = UserSessionHelpers.commonFormEvents;
-Template.createUserForm.events = UserSessionHelpers.commonFormEvents;
+Template.createSessionForm.events = UIHelpers.formEvents;
+Template.createUserForm.events = UIHelpers.formEvents;
 
 Meteor.call('isPlainText', function(err, isPlainText) {
   Session.set('isPlainText', isPlainText);

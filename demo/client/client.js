@@ -24,8 +24,8 @@ Template.demo.rememberUntil = function() {
 
 Template.demo.currentUser = UserSessionHelpers.currentUser;
 
-Template.demo.userSessionSuccess = function() {
-  return Session.get('userSessionSuccess');
+Template.demo.successMessage = function() {
+  return Session.get('successMessage');
 };
 
 // Animations
@@ -34,8 +34,8 @@ DemoHelpers = {
   successFadeOutAfter: function(afterSeconds) {
     if (this.timeoutId) Meteor.clearTimeout(this.timeoutId);
     this.timeoutId = Meteor.setTimeout(function() {
-      $('#userSessionSuccess').fadeOut('fast', function() {
-        if (!this.timeoutId) Session.set('userSessionSuccess');
+      $('#successMessage').fadeOut('fast', function() {
+        if (!this.timeoutId) Session.set('successMessage');
       });
     }, afterSeconds);
   }
@@ -45,7 +45,7 @@ DemoHelpers = {
 
 Meteor.autosubscribe(function() {
   // Deal with fading out success message some time after it's displayed
-  var message = Session.get('userSessionSuccess');
+  var message = Session.get('successMessage');
   if (message) {
     $('#setUserNameInput').focus();
     DemoHelpers.successFadeOutAfter(7000);

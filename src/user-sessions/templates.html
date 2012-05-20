@@ -23,7 +23,7 @@
           <button class="close" data-dismiss="modal">×</button>
           <h3>Sign in</h3>
         </div>
-        {{> userSessionError}}
+        {{> successMessage}}
       
         <div class="formElementGroup">
           {{#if plainTextWarning}}
@@ -61,7 +61,7 @@
           <button class="close" data-dismiss="modal">×</button>
           <h3>Sign up</h3>
         </div>
-        {{> userSessionError}}
+        {{> successMessage}}
       
         <div class="formElementGroup">
           {{#if plainTextWarning}}
@@ -91,10 +91,10 @@
   </div>
 </template>
 
-<template name="userSessionError">
-  {{#if userSessionError}}
-    {{#with userSessionError}}
-      <div id="userSessionError" class="alert alert-error">
+<template name="successMessage">
+  {{#if successMessage}}
+    {{#with successMessage}}
+      <div id="successMessage" class="alert alert-error">
           <strong>{{reason}}</strong>
           {{#if details}}
             <div id="errorDetails">
@@ -108,10 +108,10 @@
   {{/if}}
 </template>
 
-<template name="userSessionSuccess">
-  {{#if userSessionSuccess}}
-    <div id="userSessionSuccess" class="alert alert-success">
-      {{userSessionSuccess}}
+<template name="successMessage">
+  {{#if successMessage}}
+    <div id="successMessage" class="alert alert-success">
+      {{successMessage}}
     </div>
   {{/if}}
 </template>
