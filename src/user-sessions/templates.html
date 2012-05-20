@@ -16,7 +16,7 @@
 
 <template name="createSessionForm">
   <div id="createSessionForm" class="modal hide fade">
-    <form style="display:inline" class="sessionForm" data-method-name="createSession">
+    <form style="display:inline" data-method-name="createSession">
       <div class="modal-body">
         <input name="csrfToken" type="hidden" value="TODO">
         <div class="modal-header">
@@ -46,7 +46,7 @@
       </div>
       <div class="modal-footer">
         <a class="btn" data-dismiss="modal">Cancel</a>
-        <input id="signInButton" type="submit" value="Sign in" class="btn modalSubmit" />
+        <input id="signInButton" type="submit" value="Sign in" class="btn" />
       </div>
     </form>
   </div>
@@ -54,7 +54,7 @@
 
 <template name="createUserForm">
   <div id="createUserForm" class="modal hide fade">
-    <form style="display:inline" class="sessionForm" data-method-name="createUser">
+    <form style="display:inline" data-method-name="createUser">
       <div class="modal-body">
         <input name="csrfToken" type="hidden" value="TODO">
         <div class="modal-header">
