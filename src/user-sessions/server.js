@@ -11,11 +11,11 @@ Meteor.methods({
     var user = Auth.Encryptor.current.authenticateUser(params.email, params.password);
     if (user) {
       // Don't send private stuff back to client
-      var session = ClientSessions.findOne(this.sessionId);
+      var session = ClientSessions.findOne(this.clientId);
       if (session) {
         addUserToSession(user, session);
         if (params.remember === '1') {
-          Meteor.call('rememberClientSession', this.sessionId);
+          Meteor.call('rememberClientSession', this.clientId);
         }
       }
     }
@@ -35,12 +35,12 @@ Meteor.methods({
         email: params.email,
         passwordDigest: passwordDigest
       });
-      var session = ClientSessions.findOne(this.sessionId);
+      var session = ClientSessions.findOne(this.clientId);
       if (session) {
         var user = Users.findOne(userId);
         addUserToSession(user, session);
         if (params.remember === '1') {
-          Meteor.call('rememberClientSession', this.sessionId);
+          Meteor.call('rememberClientSession', this.clientId);
         }
       }
     }

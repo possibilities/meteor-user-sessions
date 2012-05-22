@@ -25,8 +25,8 @@
       <div id="currentUserInfo">
         {{#if currentUser}}
           <p><em>Signed in as</em> <strong>{{currentUser}}</strong></p>
-          {{#if sessionId}}
-            <p><em>Your session ID is</em> <strong>{{sessionId}}</strong></p>
+          {{#if clientId}}
+            <p><em>Your session ID is</em> <strong>{{clientId}}</strong></p>
           {{/if}}
           <p>Your session expires <strong>{{#if rememberUntil}}{{rememberUntil}}{{else}}when you close this browser window{{/if}}</strong>.</p>
         {{else}}

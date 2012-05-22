@@ -7,7 +7,7 @@ Date.prototype.addDays = function(days) {
 
 // Template methods and helpers
 
-Template.demo.sessionId = function() {
+Template.demo.clientId = function() {
   var session = ClientSessions.findOne();
   if (session) {  
     return session.latestKey;
