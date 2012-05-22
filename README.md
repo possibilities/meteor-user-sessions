@@ -18,6 +18,8 @@ I'll add instructions eventually. Until then check out demo app in repo.
 
 ## TODO
 
+Decouple from internal User model
+
 When you tab out of blog settings fields the focus is moving to buttons under the overlay
 
 Forms need to be cleared when submitted successfully

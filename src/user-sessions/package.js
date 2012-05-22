@@ -15,6 +15,7 @@ Package.on_use(function (api) {
   // Resources
   api.add_files('templates.html', 'client');
   // Scripts
+  api.add_files('filters.js', 'server');  
   api.add_files('client.js', 'client');  
   api.add_files('common.js', ['server', 'client']);
   api.add_files('server.js', 'server');
