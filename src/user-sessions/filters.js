@@ -15,7 +15,7 @@ UserSessionFilters = {
     }
   },
   // Not really a filter but didn't have a better place for it
-  addToMethods: function(methods) {
+  addTo: function(methods) {
     var methodNames = _.keys(methods);
 
     Filter.methods([
