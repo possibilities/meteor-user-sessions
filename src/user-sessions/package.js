@@ -1,5 +1,5 @@
 Package.describe({
-  summary: "Attach users to client-sessions"
+  summary: "A smart package for authentication and tracking users across requests (based on client-sessions)"
 });
 
 Package.on_use(function (api) {

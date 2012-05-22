@@ -1,6 +1,6 @@
 # User Sessions for Meteor
 
-A Meteor lib for tracking users across requests (based on [client-sessions](http://client-sessions.meteor.com))
+A smart package for authentication and tracking users across requests (based on [client-sessions](http://client-sessions.meteor.com))
 
 [Check out the demo!](http://user-sessions.meteor.com/)
 
