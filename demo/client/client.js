@@ -22,7 +22,7 @@ Template.demo.rememberUntil = function() {
   }
 };
 
-Template.demo.currentUser = UserSessionHelpers.currentUser;
+Template.demo.currentUser = UserSession.currentUser;
 
 Template.demo.successMessage = function() {
   return Session.get('successMessage');
@@ -53,7 +53,7 @@ Meteor.autosubscribe(function() {
 });
 
 Meteor.autosubscribe(function() {
-  var user = UserSessionHelpers.currentUser();
+  var user = UserSession.currentUser();
   Meteor.defer(function() {
     if (user) {
       $('#signOutButton').focus();

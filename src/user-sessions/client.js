@@ -1,8 +1,8 @@
 // Template methods and helpers
 
-UserSessionHelpers = {};
+UserSession = {};
 
-UserSessionHelpers.currentUser = function() {
+UserSession.currentUser = function() {
   var session, user;
   if ((session = ClientSessions.findOne()) && (user = session.get('user'))) {
     return user.email;        
@@ -20,8 +20,8 @@ Template.createSessionForm.plainTextWarning = function() {
   }
 };
 
-Template.createSessionActivator.currentUser = UserSessionHelpers.currentUser;
-Template.createUserActivator.currentUser = UserSessionHelpers.currentUser;
+Template.createSessionActivator.currentUser = UserSession.currentUser;
+Template.createUserActivator.currentUser = UserSession.currentUser;
 Template.createSessionForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
 Template.createUserForm.plainTextWarning = Template.createSessionForm.plainTextWarning;
 
