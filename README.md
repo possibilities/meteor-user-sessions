@@ -2,6 +2,8 @@
 
 A smart package for authentication and tracking users across requests (based on [client-sessions](http://client-sessions.meteor.com))
 
+*Note: I'm noticing people forking and following this and wanted to point out that it's in a semi-broken state right now because I just updated it's dependencies and I haven't gotten around to catching with them. This library will be getting a lot of love in the next couple days, stay tuned.*
+
 [Check out the demo!](http://user-sessions.meteor.com/)
 
 ## Installation
