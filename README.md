@@ -4,6 +4,8 @@ A smart package for authentication and tracking users across requests (based on 
 
 *Note: I'm noticing people forking and following this and wanted to point out that it's in a semi-broken state right now because I just updated it's dependencies and I haven't gotten around to catching up with them. This library will be getting a lot of love in the next couple days, stay tuned.*
 
+*Follow this discussion if you want to know when this proj is ready to tinkering again: [https://github.com/possibilities/meteor-user-sessions/commit/65ff55bbc91cdc37acd8a8b20f7b1a803d9e803b#commitcomment-1438253](https://github.com/possibilities/meteor-user-sessions/commit/65ff55bbc91cdc37acd8a8b20f7b1a803d9e803b#commitcomment-1438253)*
+
 [Check out the demo!](http://user-sessions.meteor.com/)
 
 ## Installation
