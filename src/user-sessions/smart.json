@@ -1,0 +1,7 @@
+{
+  "packages": {
+    "client-sessions": {
+      "git": "https://github.com/possibilities/meteor-client-sessions.git"
+    }
+  }
+}
