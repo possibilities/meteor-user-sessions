@@ -2,6 +2,18 @@
   "packages": {
     "client-sessions": {
       "git": "https://github.com/possibilities/meteor-client-sessions.git"
+    },
+    "simple-secure": {
+      "git": "https://github.com/possibilities/meteor-simple-secure.git"
+    },
+    "encryptors": {
+      "git": "https://github.com/possibilities/meteor-encryptors.git"
+    },
+    "template-hooks": {
+      "git": "https://github.com/possibilities/meteor-template-hooks.git"
+    },
+    "forms": {
+      "git": "https://github.com/possibilities/meteor-forms.git"
     }
   }
 }
